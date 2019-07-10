@@ -1,0 +1,4 @@
+
+rootProject.name = 'SpringBoot'
+
+enableFeaturePreview('GRADLE_METADATA')

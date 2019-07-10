@@ -1,0 +1,58 @@
+group 'eu.qiou.aaf4k'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.3.30' // Required for Kotlin integration
+    ext.spring_boot_version = '2.1.0.RELEASE'
+    ext.ktor_version = '1.2.2'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Required for Kotlin integration
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+        classpath "org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.10"
+    }
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath "eu.qiou.aaf4k:aaf4k-base:1.0-SNAPSHOT"
+    }
+}
+
+
+apply plugin: 'kotlin' // Required for Kotlin integration
+apply plugin: "kotlin-spring" // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+    baseName = 'gs-rest-service'
+    version = '0.1.0'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.10"
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx.html
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+repositories {
+    mavenLocal()
+}
+dependencies {
+    compile "eu.qiou.aaf4k:aaf4k-base:1.0-SNAPSHOT"
+}
